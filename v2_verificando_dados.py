@@ -1,25 +1,40 @@
 from v1_dados import dados_arquivos
 import pandas as pd
 
-# Verificando se possui algum arquivo duplicado
+# ============================================================
+# v2_verificando_dados.py
+# Responsabilidade: APENAS verificar a qualidade dos dados brutos.
+# Nenhuma transformação é feita aqui.
+# ============================================================
+
 df = dados_arquivos()
+
+print("=" * 50)
+print("VERIFICAÇÃO DE DUPLICATAS")
+print("=" * 50)
 print("Linhas duplicadas:", df.duplicated().sum())
 print("IDs duplicados:", df.duplicated(subset='customerID').sum())
 
-# Verificando se possui algum espaço em branco
+print("\n" + "=" * 50)
+print("VALORES NULOS POR COLUNA")
+print("=" * 50)
 print(df.isnull().sum())
+
+print("\n" + "=" * 50)
+print("VALORES EM BRANCO (espaço) POR COLUNA")
+print("=" * 50)
 print((df == " ").sum())
 
-
-
-# verificando os tipos de dados das colunas
-df.head()
+print("\n" + "=" * 50)
+print("TIPOS DE DADOS")
+print("=" * 50)
 df.info()
 
-# Verificando as colunas, todas as colunas demonstram ser de interesse para nossa análise.
-# Iremos manter a coluna de ID apenas para organização e evitar duplicatas, tanto para rastreamento caso necessário.
-# Analisando, verificamos que a coluna Total Charges está constando como objeto, que deveria ser um float.
-# Portanto iremos converter a coluna.
-# Aqui utilizando o erros='coerce' porque na coluna possuia alguns valores em branco, assim convertendo para NaN
-df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
-df.info()
+print("\n" + "=" * 50)
+print("PRIMEIRAS LINHAS")
+print("=" * 50)
+print(df.head())
+
+# Observação: a coluna TotalCharges está como object mas deveria ser float.
+# Isso ocorre porque há valores em branco que impedem a conversão automática.
+# A limpeza e conversão é feita no v3_limpeza_dados.py.
