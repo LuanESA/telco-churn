@@ -23,9 +23,3 @@ df.info()
 # Aqui utilizando o erros='coerce' porque na coluna possuia alguns valores em branco, assim convertendo para NaN
 df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
 df.info()
-
-
-
-# exportando o arquivo
-
-df.to_csv('raw/dados_tratados.csv', index=False)
