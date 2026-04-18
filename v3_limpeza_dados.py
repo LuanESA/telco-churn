@@ -15,7 +15,7 @@ def dados_tratados(df):
 
 
     # Converter Churn para binário (0 = Não, 1 = Sim)
-    df['Churn'] = df['Churn'].nap({'Yes': 1, 'No': 0})
+    df['Churn'] = df['Churn'].map({'Yes': 1, 'No': 0})
 
 
     # Criar coluna de faixa de preço mensal
